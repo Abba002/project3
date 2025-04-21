@@ -160,3 +160,6 @@ jr $ra
 no_valid:
 li $v0, 0x7FFFFFFF
 jr $ra
+
+.data
+buffer: .space 11
