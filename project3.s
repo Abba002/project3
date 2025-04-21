@@ -14,3 +14,7 @@ li $v0, 8
 la $a0, input
 li $a1, 1000
 syscall
+
+la $a0, input
+la $a1, strint
+jal process_string
