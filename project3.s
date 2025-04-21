@@ -131,9 +131,9 @@ process_substring:
     jr $ra
 
 get_substring_value:
-    addi $sp, $sp, -4
+    addi $sp, $sp, -8 #allocate 8 bytes to keep alignment
     sw $ra, 0($sp)
-    lw $t0, 4($sp) #get substring address from stack
+    lw $t0, 8($sp) #get substring address from stack
     li $t1, 0 #index
     li $t2, 0 #count valid
     li $t3, 0 # G sum
@@ -191,14 +191,14 @@ continue_loop:
 compute:
     beqz $t2, no_valid
     sub $t9, $t3, $t4
-    sw $t9, 4($sp) #store result on stack
+    sw $t9, 8($sp) #store result on stack
     j done
 
 no_valid:
     li $t9, 0x7FFFFFFF
-    sw $t9, 4($sp) #store NUll on stack
+    sw $t9, 8($sp) #store NUll on stack
     
 done:
     lw $ra, 0($sp)
-    addi $sp, $sp, 4
+    addi $sp, $sp, 8
     jr $ra
