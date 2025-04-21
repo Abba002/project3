@@ -1,10 +1,8 @@
 .data 
-.align 2 #ensures strint is word-aligned
 input:      .space 1001
 strint:     .space 4000
-nullstr:    .asciiz "NULL"
 newline:    .asciiz "\n"
-buffer:     .space 11
+nullstr:    .asciiz "NULL"
 
 .text
 .globl main
@@ -20,7 +18,7 @@ main:
     la $a1, strint
     jal process_string
 
-    move $t0,$v0 #t0= count
+    move $t0, $v0 #t0= count
     la $t1, strint #pointer to result array
     li $t2, 0 #index = 0
 
@@ -33,6 +31,7 @@ print_loop:
     move $a0, $t3
     li $v0, 1
     syscall
+    j check_last
 
 print_null:
     la $a0, nullstr
@@ -61,12 +60,12 @@ process_string:
 
 next_chunk:
     li $t0, 0 #char index = 0
-    la $t1, buffer # substring buffer
+    la $t3, buffer # substring buffer
 
 fill_loop:
-    lb $t2, 0($s0)
-    beqz $t2, pad_spaces
-    sb $t2, 0($t1)
+    lb $t4, 0($s0)
+    beqz $t4, pad_spaces
+    sb $t4, 0($t1)
 
     addi $s0, $s0, 1
     addi $t1, $t1, 1
