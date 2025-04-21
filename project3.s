@@ -16,7 +16,7 @@ main:
 
     la $a0, input
     la $a1, strint
-    
+
     addi $sp, $sp, -4
     sw $ra, 0($sp)
 
@@ -61,6 +61,11 @@ exit:
 
 
 process_string:
+    addi $sp, $sp, 12
+    sw $ra, 0($sp)
+    sw $s0, 4($sp)
+    sw $s1, 8($sp)
+    
     move $s0, $a0 #s0= input pointer
     move $s1, $a1 #s1= result array pointer
     li $s2, 0 #substring count = 0
