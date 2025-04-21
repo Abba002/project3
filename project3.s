@@ -1,6 +1,7 @@
 .data 
 input:      .space 1001
 strint:     .space 4000
+.align 2
 nullstr:    .asciiz "NULL"
 buffer:     .space 11
 
@@ -76,11 +77,17 @@ next_chunk:
     
     la $t7, buffer
     li $t8, 11
+
 clear_buffer:
+    la $t7, buffer
+    li $t8, 10 # only clear 10 bytes
+
+clear_loop:
     sb $zero, 0($t7)
     addi $t7, $t7, 1
     addi $t8, $t8, -1
-    bnez $t8, clear_buffer
+    bnez $t8, clear_loop
+    sb $zero, 0($t7) # null terminate the buffer
 
 fill_loop:
     lb $t4, 0($s0)
