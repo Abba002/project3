@@ -94,3 +94,10 @@ bnez $t4, next_chunk
 
 move $v0, $s2
 jr $ra
+
+get_substring_value:
+move $t0, $a0 # t0 = pointer
+li $t1, 0 #index
+li $t2, 0 #count valid
+li $t3, 0 # G sum
+li $t4, 0 # H sum
