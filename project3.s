@@ -53,6 +53,12 @@ exit:
     li $v0, 10
     syscall
 
+bad_alignment:
+    li $v0, 4
+    la $a0, align_error
+    syscall
+    j exit
+
 process_string:
     move $s0, $a0 #s0= input pointer
     move $s1, $a1 #s1= result array pointer
