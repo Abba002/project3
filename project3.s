@@ -33,3 +33,8 @@ move $a0, $t3
 li $v0, 1
 syscall
 
+print_null:
+la $a0, nullstr
+li $v0, 4
+syscall
+
