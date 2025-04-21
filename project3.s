@@ -86,3 +86,8 @@ call_get_sub:
 la $a0, buffer
 jal get_substring_value
 sw $v0, 0($s1)
+
+addi $s1, $s1, 4
+addi $s2, $s2, 1
+lb $t4, 0($s0)
+bnez $t4, next_chunk
