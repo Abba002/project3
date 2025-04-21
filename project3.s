@@ -143,3 +143,6 @@ addi $t2, $t2, 1 #count valid digits
 li $t9, 5
 blt $t1. $t9, add_G
 add $t4, $t4, $t8 #add to sum H
+
+add_G:
+add $t3, $t3, $t8
