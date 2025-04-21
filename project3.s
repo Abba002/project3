@@ -91,8 +91,8 @@ call_get_sub:
 
     addi $s1, $s1, 4
     addi $s2, $s2, 1
-    lb $t4, 0($s0)
-    bnez $t4, next_chunk
+    lb $t6, 0($s0)
+    bnez $t6, next_chunk
 
     move $v0, $s2
     jr $ra
@@ -103,17 +103,18 @@ get_substring_value:
     li $t2, 0 #count valid
     li $t3, 0 # G sum
     li $t4, 0 # H sum
+    li $t6, 5
 
 next_char:
     lb $t5, 0($t0)
     beqz $t5, compute
-    li $t6, '0'
+    li $t7, '0'
 
-    li $t7, '9'
-    blt $t5, $t6, check_upper
-    bgt $t5, $t7, check_upper
-    sub $t8, $t5, $t6
-    j add_value
+    li $t8, '9'
+    blt $t5, $t7, check_upper
+    bgt $t5, $t8, check_upper
+    sub $t9, $t5, $t7
+    j store_digit
 
 check_upper:
     li $t6, 'A'
