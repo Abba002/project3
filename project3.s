@@ -1,8 +1,8 @@
 .data 
 input:      .space 1001
 strint:     .space 4000
-newline:    .asciiz "\n"
 nullstr:    .asciiz "NULL"
+buffer:     .space 11
 
 .text
 .globl main
@@ -163,6 +163,3 @@ compute:
 no_valid:
     li $v0, 0x7FFFFFFF
     jr $ra
-
-.data
-buffer: .space 11
