@@ -68,21 +68,21 @@ fill_loop:
     sb $t4, 0($t1)
 
     addi $s0, $s0, 1
-    addi $t1, $t1, 1
+    addi $t3, $t3, 1
     addi $t0, $t0, 1
-    li $t3,10
-    blt $t0, $t3, fill_loop
+    li $t5,10
+    blt $t0, $t5, fill_loop
 
     j call_get_sub
 
 pad_spaces:
-    li $t2, 32 #space
-    sb $t2, 0($t1)
+    li $t4, 32 #space
+    sb $t4, 0($t3)
 
-    addi $t1, $t1, 1
+    addi $t3, $t3, 1
     addi $t0, $t0, 1
-    li $t3, 10
-    blt $t0, $t3, pad_spaces
+    li $t5, 10
+    blt $t0, $t5, pad_spaces
 
 call_get_sub:
     la $a0, buffer
