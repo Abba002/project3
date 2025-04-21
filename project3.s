@@ -100,8 +100,7 @@ pad_spaces:
 
     addi $t3, $t3, 1
     addi $t0, $t0, 1
-    li $t5, 10
-    blt $t0, $t5, pad_spaces
+    blt $t0, 10, pad_spaces
 
 call_get_sub:
     la $a0, buffer
