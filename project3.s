@@ -56,3 +56,7 @@ process_string:
 move $s0, $a0 #s0= input pointer
 move $s1, $a1 #s1= result array pointer
 li $s2, 0 #substring count = 0
+
+next_chunk:
+li $t0, 0 #char index = 0
+la $t1, buffer # substring buffer
