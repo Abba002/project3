@@ -85,15 +85,14 @@ clear_buffer:
 fill_loop:
     lb $t4, 0($s0)
     beqz $t4, pad_spaces
-    sb $t4, 0($t1)
+    sb $t4, 0($t3)
 
     addi $s0, $s0, 1
     addi $t3, $t3, 1
     addi $t0, $t0, 1
-    li $t5,10
-    blt $t0, $t5, fill_loop
+    blt $t0, 10, fill_loop
 
-    j call_get_sub
+    j process_substring
 
 pad_spaces:
     li $t4, 32 #space
