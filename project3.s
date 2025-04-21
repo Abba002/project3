@@ -122,3 +122,9 @@ bgt $t5, $t7, check_lower
 sub $t8, $t5, 'A'
 addi $t8, $t8, 10
 j add_value
+
+check_lower:
+li $t6, 'a'
+li $t7, 'q' #17th lowercase letter
+blt $t5, $t6, skip
+bgt $t5, $t7, skip
