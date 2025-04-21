@@ -184,9 +184,15 @@ continue_loop:
 compute:
     beqz $t2, no_valid
     sub $t9, $t3, $t4
-    sw $t9, 4($sp)
+    sw $t9, 4($sp) #store result on stack
     j done
 
 no_valid:
-    li $v0, 0x7FFFFFFF
+    li $t9, 0x7FFFFFFF
+    sw $t9, 4($sp) #store NUll on stack
+    
+done:
+    lw $ra, 0($sp)
+    addi $sp, $sp, 4
     jr $ra
+    
