@@ -118,3 +118,7 @@ li $t6, 'A'
 li $t7, 'Q' #17th uppercase letter
 blt $t5, $t6, check_lower
 bgt $t5, $t7, check_lower
+
+sub $t8, $t5, 'A'
+addi $t8, $t8, 10
+j add_value
