@@ -18,3 +18,7 @@ syscall
 la $a0, input
 la $a1, strint
 jal process_string
+
+move $t0,$v0 #t0= count
+la $t1, strint #pointer to result array
+li $t2, 0 #index = 0
