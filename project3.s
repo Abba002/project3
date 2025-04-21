@@ -105,7 +105,7 @@ pad_spaces:
 process_substring:
     addi $sp, $sp, -4
     la $t3, buffer
-    sw $t3. 0($sp)
+    sw $t3, 0($sp)
     jal get_substring_value
     lw $t3, 0($sp) #pop result from stack
 
@@ -195,4 +195,3 @@ done:
     lw $ra, 0($sp)
     addi $sp, $sp, 4
     jr $ra
-    
