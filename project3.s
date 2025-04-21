@@ -65,14 +65,17 @@ process_string:
     sw $ra, 0($sp)
     sw $s0, 4($sp)
     sw $s1, 8($sp)
-    
+
     move $s0, $a0 #s0= input pointer
     move $s1, $a1 #s1= result array pointer
     li $s2, 0 #substring count = 0
 
 next_chunk:
-    li $t0, 0 #char index = 0
     la $t3, buffer # substring buffer
+    li $t0, 0 #char index = 0
+    
+    la $t7, buffer
+    li $t8, 11
 
 fill_loop:
     lb $t4, 0($s0)
