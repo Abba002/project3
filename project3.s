@@ -151,3 +151,8 @@ continue_loop:
 addi $t0, $t0, 1
 addi $t1, $t1, 1
 j next_char
+
+compute:
+beqz $t2, no_valid
+sub $v0, $t3, $t4
+jr $ra
