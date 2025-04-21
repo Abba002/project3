@@ -51,3 +51,8 @@ j print_loop
 exit:
 li $v0, 10
 syscall
+
+process_string:
+move $s0, $a0 #s0= input pointer
+move $s1, $a1 #s1= result array pointer
+li $s2, 0 #substring count = 0
