@@ -66,7 +66,7 @@ lb $t2, 0($s0)
 beqz $t2, pad_spaces
 sb $t2, 0($t1)
 
-addi $s0, s0, 1
+addi $s0, $s0, 1
 addi $t1, $t1, 1
 addi $t0, $t0, 1
 li $t3,10
