@@ -106,3 +106,9 @@ next_char:
 lb $t5, 0($t0)
 beqz $t5, compute
 li $t6, '0'
+
+li $t7, '9'
+blt $t5, $t6, check_upper
+bgt $t5, $t7, check_upper
+sub $t8, $t5, $t6
+j add_value
