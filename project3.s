@@ -76,3 +76,8 @@ j call_get_sub
 pad_spaces:
 li $t2, 32 #space
 sb $t2, 0($t1)
+
+addi $t1, $t1, 1
+addi $t0, $t0, 1
+li $t3, 10
+blt $t0, $t3, pad_spaces
