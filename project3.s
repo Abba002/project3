@@ -132,3 +132,8 @@ bgt $t5, $t7, skip
 sub $t8, $t5, 'a'
 addi $t8, $t8, 10
 j add_value
+
+skip:
+addi $t0, $t0, 1
+addi $t1, $t1, 1
+j next_char
