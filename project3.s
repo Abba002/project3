@@ -91,3 +91,6 @@ addi $s1, $s1, 4
 addi $s2, $s2, 1
 lb $t4, 0($s0)
 bnez $t4, next_chunk
+
+move $v0, $s2
+jr $ra
