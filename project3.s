@@ -81,3 +81,8 @@ addi $t1, $t1, 1
 addi $t0, $t0, 1
 li $t3, 10
 blt $t0, $t3, pad_spaces
+
+call_get_sub:
+la $a0, buffer
+jal get_substring_value
+sw $v0, 0($s1)
