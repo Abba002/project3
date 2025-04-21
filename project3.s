@@ -38,3 +38,7 @@ la $a0, nullstr
 li $v0, 4
 syscall
 
+check_last:
+addi $t2, $t2, 1
+addi $t1, $t1, 4
+beq $t2, $t0, exit
