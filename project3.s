@@ -60,3 +60,8 @@ li $s2, 0 #substring count = 0
 next_chunk:
 li $t0, 0 #char index = 0
 la $t1, buffer # substring buffer
+
+fill_loop:
+lb $t2, 0($s0)
+beqz $t2, pad_spaces
+sb $t2, 0($t1)
