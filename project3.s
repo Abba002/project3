@@ -87,6 +87,8 @@ pad_spaces:
 call_get_sub:
     la $a0, buffer
     jal get_substring_value
+    andi $t5, $s1, 3
+    bnez $t5, bad_alignment
     sw $v0, 0($s1)
 
     addi $s1, $s1, 4
