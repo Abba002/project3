@@ -28,3 +28,8 @@ beq $t2, $t0, exit
 lw $t3, 0($t1)
 li $t4, 0x7FFFFFFF # null
 beq $t3, $t4, print_null
+
+move $a0, $t3
+li $v0, 1
+syscall
+
