@@ -102,9 +102,13 @@ pad_spaces:
     addi $t0, $t0, 1
     blt $t0, 10, pad_spaces
 
-call_get_sub:
-    la $a0, buffer
+process_substring:
+    addi $sp, $sp, -4
+    la $t3, buffer
+    sw $t3. 0($sp)
     jal get_substring_value
+    lw $t3, 0($sp) #pop result from stack
+    
     sw $v0, 0($s1)
 
     addi $s1, $s1, 4
