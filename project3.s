@@ -47,3 +47,7 @@ li $a0, 59 #ascii ';'
 li $v0, 11
 syscall
 j print_loop
+
+exit:
+li $v0, 10
+syscall
