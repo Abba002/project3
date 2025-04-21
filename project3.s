@@ -3,8 +3,8 @@
 input:      .space 1001
 strint:     .space 4000
 nullstr:    .asciiz "NULL"
-align_error: .asciiz "ERROR: Unaligned store to strint!\n"
 newline:    .asciiz "\n"
+buffer:     .space 11
 
 .text
 .globl main
@@ -53,11 +53,6 @@ exit:
     li $v0, 10
     syscall
 
-bad_alignment:
-    li $v0, 4
-    la $a0, align_error
-    syscall
-    j exit
 
 process_string:
     move $s0, $a0 #s0= input pointer
@@ -93,8 +88,6 @@ pad_spaces:
 call_get_sub:
     la $a0, buffer
     jal get_substring_value
-    andi $t5, $s1, 3
-    bnez $t5, bad_alignment
     sw $v0, 0($s1)
 
     addi $s1, $s1, 4
