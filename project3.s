@@ -117,31 +117,31 @@ next_char:
     j store_digit
 
 check_upper:
-    li $t6, 'A'
-    li $t7, 'Q' #17th uppercase letter
-    blt $t5, $t6, check_lower
-    bgt $t5, $t7, check_lower
+    li $t7, 'A'
+    li $t8, 'Q' #17th uppercase letter
+    blt $t5, $t7, check_lower
+    bgt $t5, $t8, check_lower
 
-    sub $t8, $t5, 'A'
-    addi $t8, $t8, 10
-    j add_value
+    sub $t9, $t5, 'A'
+    addi $t9, $t9, 10
+    j store_digit
 
 check_lower:
-    li $t6, 'a'
-    li $t7, 'q' #17th lowercase letter
-    blt $t5, $t6, skip
-    bgt $t5, $t7, skip
+    li $t7, 'a'
+    li $t8, 'q' #17th lowercase letter
+    blt $t5, $t7, skip
+    bgt $t5, $t8, skip
 
-    sub $t8, $t5, 'a'
-    addi $t8, $t8, 10
-    j add_value
+    sub $t9, $t5, 'a'
+    addi $t9, $t9, 10
+    j store_digit
 
 skip:
     addi $t0, $t0, 1
     addi $t1, $t1, 1
     j next_char
 
-add_value:
+store_digit:
     addi $t2, $t2, 1 #count valid digits
     li $t9, 5
     blt $t1, $t9, add_G
