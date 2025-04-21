@@ -16,7 +16,14 @@ main:
 
     la $a0, input
     la $a1, strint
+    
+    addi $sp, $sp, -4
+    sw $ra, 0($sp)
+
     jal process_string
+
+    lw $ra, 0($sp)
+    addi $sp, $sp, 4
 
     move $t0, $v0 #t0= count
     la $t1, strint #pointer to result array
