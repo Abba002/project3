@@ -143,12 +143,12 @@ skip:
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
-    li $t9, 5
-    blt $t1, $t9, add_G
-    add $t4, $t4, $t8 #add to sum H
+    blt $t1, $t6, add_G
+    add $t4, $t4, $t9 #add to sum H
+    j continue_loop
 
 add_G:
-    add $t3, $t3, $t8
+    add $t3, $t3, $t9
 
 continue_loop:
     addi $t0, $t0, 1
