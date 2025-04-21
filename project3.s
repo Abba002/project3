@@ -1,8 +1,10 @@
 .data 
+.align 2 #ensures strint is word-aligned
 input:      .space 1001
 strint:     .space 4000
-newline:    .asciiz "\n"
 nullstr:    .asciiz "NULL"
+align_error: .asciiz "ERROR: Unaligned store to strint!\n"
+newline:    .asciiz "\n"
 
 .text
 .globl main
