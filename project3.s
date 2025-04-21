@@ -76,6 +76,11 @@ next_chunk:
     
     la $t7, buffer
     li $t8, 11
+clear_buffer:
+    sb $zero, 0($t7)
+    addi $t7, $t7, 1
+    addi $t8, $t8, -1
+    bnez $t8, clear_buffer
 
 fill_loop:
     lb $t4, 0($s0)
