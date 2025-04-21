@@ -101,3 +101,8 @@ li $t1, 0 #index
 li $t2, 0 #count valid
 li $t3, 0 # G sum
 li $t4, 0 # H sum
+
+next_char:
+lb $t5, 0($t0)
+beqz $t5, compute
+li $t6, '0'
