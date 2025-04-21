@@ -146,3 +146,8 @@ add $t4, $t4, $t8 #add to sum H
 
 add_G:
 add $t3, $t3, $t8
+
+continue_loop:
+addi $t0, $t0, 1
+addi $t1, $t1, 1
+j next_char
