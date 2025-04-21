@@ -156,3 +156,7 @@ compute:
 beqz $t2, no_valid
 sub $v0, $t3, $t4
 jr $ra
+
+no_valid:
+li $v0, 0x7FFFFFFF
+jr $ra
