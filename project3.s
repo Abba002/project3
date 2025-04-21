@@ -42,3 +42,8 @@ check_last:
 addi $t2, $t2, 1
 addi $t1, $t1, 4
 beq $t2, $t0, exit
+
+li $a0, 59 #ascii ';'
+li $v0, 11
+syscall
+j print_loop
