@@ -108,15 +108,19 @@ process_substring:
     sw $t3. 0($sp)
     jal get_substring_value
     lw $t3, 0($sp) #pop result from stack
-    
-    sw $v0, 0($s1)
 
+    addi $sp, $sp, 4
+    sw $t3, 0($s1) #store result in array
     addi $s1, $s1, 4
     addi $s2, $s2, 1
     lb $t6, 0($s0)
     bnez $t6, next_chunk
 
     move $v0, $s2
+    lw $ra, 0($sp)
+    lw $s0, 4($sp)
+    lw $s1, 8($sp)
+    addi $sp, $sp, 12
     jr $ra
 
 get_substring_value:
