@@ -179,7 +179,8 @@ check_lower:
 skip:
     addi $t0, $t0, 1
     addi $t1, $t1, 1
-    blt $t1, 10, next_char
+    slti $t9, $t1, 10
+    bne $t9, $zero, next_char
     j compute
 
 store_digit:
