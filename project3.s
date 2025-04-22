@@ -144,6 +144,7 @@ get_substring_value:
     addi $t6, $zero, 5 #half substring length
 
 next_char:
+    addi $t1, $t1, 1 # increment index first
     lb $t5, 0($t0)
     beq $t5, $zero, compute
     addi $t7, $zero, 48 #'0'
@@ -180,14 +181,14 @@ check_lower:
 skip:
     addi $t0, $t0, 1
    # addi $t1, $t1, 1
-    #slti $t9, $t1, 10
-    #bne $t9, $zero, next_char
-   # j compute
-   j next_char
+    slti $t9, $t1, 10
+    bne $t9, $zero, next_char
+    j compute
+   #j next_char
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
-    slt $t9, $t1, $t6
+    slti $t9, $t1, 6
     bne $t9, $zero, add_G
     add $t4, $t4, $t9 #add to sum H
     j continue_loop
@@ -198,9 +199,9 @@ add_G:
 continue_loop:
     addi $t0, $t0, 1
    # addi $t1, $t1, 1
-    #slti $t9, $t1, 10
-    #bne $t9, $zero, next_char
-    j next_char
+    slti $t9, $t1, 10
+    bne $t9, $zero, next_char
+    j compute
 
 compute:
     beq $t2, $zero, no_valid
