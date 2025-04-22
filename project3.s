@@ -52,13 +52,13 @@ check_last:
     addi $t1, $t1, 4
     beq $t2, $t0, exit
 
-    li $a0, 59 #ascii ';'
-    li $v0, 11
+    addi $a0, $zero, 59 #ascii ';'
+    addi $v0, $zero, 11
     syscall
     j print_loop
 
 exit:
-    li $v0, 10
+    addi $v0, $zero, 10
     syscall
 
 
@@ -70,18 +70,18 @@ process_string:
 
     add $s0, $a0, $zero #s0= input pointer
     add $s1, $a1, $zero #s1= result array pointer
-    li $s2, 0 #substring count = 0
+    addi $s2, $zero, 0 #substring count = 0
 
 next_chunk:
     la $t3, buffer # substring buffer
-    li $t0, 0 #char index = 0
+    addi $t0, $zero, 0 #char index = 0
     
     la $t7, buffer
-    li $t8, 11
+    addi $t8, $zero, 11
 
 clear_buffer:
     la $t7, buffer
-    li $t8, 10 # only clear 10 bytes
+    addi $t8, $zero, 10 # only clear 10 bytes
 
 clear_loop:
     sb $zero, 0($t7)
@@ -103,7 +103,7 @@ fill_loop:
     j process_substring
 
 pad_spaces:
-    li $t4, 32 #space
+    addi $t4, $zero, 32 #space
     sb $t4, 0($t3)
 
     addi $t3, $t3, 1
