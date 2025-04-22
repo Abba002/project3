@@ -98,7 +98,8 @@ fill_loop:
     addi $s0, $s0, 1
     addi $t3, $t3, 1
     addi $t0, $t0, 1
-    blt $t0, 10, fill_loop
+    slti $t5, $t0, 10
+    bne $t5, $zero, fill_loop
 
     j process_substring
 
@@ -143,11 +144,13 @@ get_substring_value:
 
 next_char:
     lb $t5, 0($t0)
-    beqz $t5, compute
-    li $t7, '0'
-    li $t8, '9'
-    blt $t5, $t7, check_upper
-    bgt $t5, $t8, check_upper
+    beq $t5, $zero, compute
+    addi $t7, $zero, 48 #'0'
+    addi $t8, $zero, 57 # '9'
+    slt $t9, $t5, $t7
+    bne $t9, $zero, check_upper
+    slt $t9, $t8, $t5
+    bne $t9, $zero, check_upper
     sub $t9, $t5, $t7
     j store_digit
 
