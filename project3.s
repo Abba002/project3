@@ -155,7 +155,6 @@ get_substring_value:
 next_char:
     lb $t5, 0($t0)
     beq $t5, $zero, compute
-    addi $t1, $t1, 1 # increment index first
     addi $t7, $zero, 48 #'0'
     addi $t8, $zero, 57 # '9'
     slt $t9, $t5, $t7
@@ -172,7 +171,7 @@ check_upper:
     bne $t9, $zero, check_lower
     slt $t9, $t8, $t5
     bne $t9, $zero, check_lower
-    addi $t9, $t5, -65 # 'A'
+    sub $t9, $t5, $t7
     addi $t9, $t9, 10
     j store_digit
 
@@ -183,12 +182,13 @@ check_lower:
     bne $t9, $zero, skip
     slt $t9, $t8, $t5
     bne $t9, $zero, skip
-    addi $t9, $t5, -97 # 'a'
+    sub $t9, $t5, $t7
     addi $t9, $t9, 10
     j store_digit
 
 skip:
     addi $t0, $t0, 1
+    addi $t1, $t1, 1
     slti $t8, $t1, 10
     bne $t8, $zero, next_char
     j compute
@@ -205,6 +205,7 @@ add_G:
 
 continue_loop:
     addi $t0, $t0, 1
+    addi $t1, $t1, 1
     slti $t8, $t1, 10
     bne $t8, $zero, next_char
     j compute
