@@ -155,11 +155,13 @@ next_char:
     j store_digit
 
 check_upper:
-    li $t7, 'A'
-    li $t8, 'V' #22nd uppercase letter
-    blt $t5, $t7, check_lower
-    bgt $t5, $t8, check_lower
-    sub $t9, $t5, 'A'
+    addi $t7, $zero, 65 # 'A'
+    addi $t8, $zero, 86 # 'V' #22nd uppercase letter
+    slt $t9, $t5, $t7
+    bne $t9, $zero, check_lower
+    slt $t9, $t8, $t5
+    bne $t9, $zero, check_lower
+    addi $t9, $t5, -65 # 'A'
     addi $t9, $t9, 10
     j store_digit
 
