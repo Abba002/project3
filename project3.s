@@ -211,8 +211,7 @@ continue_loop:
 
 compute:
     beq $t2, $zero, no_valid
-    sub $t9, $t3, $t4
-    sw $t9, 8($sp) #store result on stack
+    sub $v0, $t3, $t4
     j done
 
 no_valid:
