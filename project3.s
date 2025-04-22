@@ -17,7 +17,7 @@ main:
     syscall
 
     la $t3, input
-    strip_newline:
+strip_newline:
     lb $t4, 0($t3)
     beq $t4, $zero, end_strip
     addi $t5, $zero, 10 #ascii for newline
@@ -25,6 +25,11 @@ main:
     sb $zero, 0($t3)
     j end_strip
 
+not_newline:
+    addi $t3, $t3, 1
+    j strip_newline
+
+end_strip:
     addi $sp, $sp, -4
     sw $ra, 0($sp)
 
