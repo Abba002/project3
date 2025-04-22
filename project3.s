@@ -120,14 +120,9 @@ pad_spaces:
     bne $t5, $zero, pad_spaces
 
 process_substring:
-    addi $sp, $sp, -4
-    la $t3, buffer
-    sw $t3, 0($sp)
+    la $a0, buffer
     jal get_substring_value
-    lw $t3, 0($sp) #pop result from stack
-
-    addi $sp, $sp, 4
-    sw $t3, 0($s1) #store result in array
+    sw $v0, 0($s1) #store result in array
     addi $s1, $s1, 4
     addi $s2, $s2, 1
     lb $t6, 0($s0)
@@ -215,11 +210,9 @@ compute:
     j done
 
 no_valid:
-    lui $t9, 0x7FFF
-    ori $t9, $t9, 0xFFFF
-    sw $t9, 8($sp) #store NUll on stack
+    li $v0, 0x7FFFFFFF 
     
 done:
     lw $ra, 0($sp)
-    addi $sp, $sp, 8
+    addi $sp, $sp, 4
     jr $ra
