@@ -74,12 +74,12 @@ next_chunk:
     la $t3, buffer # substring buffer
     addi $t0, $zero, 0 #char index = 0
     
-    la $t7, buffer
+  #  la $t7, buffer
     addi $t8, $zero, 11
 
-clear_buffer:
+#clear_buffer:
     #la $t7, buffer
-    addi $t8, $zero, 10 # only clear 10 bytes
+   # addi $t8, $zero, 10 # only clear 10 bytes
 
 clear_loop:
     sb $zero, 0($t3) #use t3 directly
@@ -91,7 +91,7 @@ clear_loop:
 
 fill_loop:
     lb $t4, 0($s0)
-    beqz $t4, pad_spaces
+    beq $t4, $zero, pad_spaces
     sb $t4, 0($t3)
 
     addi $s0, $s0, 1
@@ -108,7 +108,8 @@ pad_spaces:
 
     addi $t3, $t3, 1
     addi $t0, $t0, 1
-    blt $t0, 10, pad_spaces
+    slti $t5, $t0, 10
+    bne $t5, $zero, pad_spaces
 
 process_substring:
     addi $sp, $sp, -4
