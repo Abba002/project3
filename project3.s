@@ -190,7 +190,7 @@ skip:
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
-    slti $t8, $t1, 6
+    slti $t8, $t1, 5
     bne $t8, $zero, add_G
     add $t4, $t4, $t9 #add to sum H
     j continue_loop
