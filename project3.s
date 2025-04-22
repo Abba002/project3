@@ -1,8 +1,9 @@
 .data 
-.align 2
 input:      .space 1001
+.align 2
 strint:     .space 4000
 nullstr:    .asciiz "NULL"
+.align 2
 buffer:     .space 11
 
 .text
