@@ -135,11 +135,11 @@ get_substring_value:
     addi $sp, $sp, -8 #allocate 8 bytes to keep alignment
     sw $ra, 0($sp)
     lw $t0, 8($sp) #get substring address from stack
-    li $t1, 0 #index
-    li $t2, 0 #count valid
-    li $t3, 0 # G sum
-    li $t4, 0 # H sum
-    li $t6, 5 #half substring length
+    addi $t1, $zero, 0 #index
+    addi $t2, $zero, 0 #count valid
+    addi $t3, $zero, 0 # G sum
+    addi $t4, $zero, 0 # H sum
+    addi $t6, $zero, 5 #half substring length
 
 next_char:
     lb $t5, 0($t0)
