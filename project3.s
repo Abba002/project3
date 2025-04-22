@@ -88,12 +88,7 @@ next_chunk:
     la $t3, buffer # substring buffer
     addi $t0, $zero, 0 #char index = 0
     
-  #  la $t7, buffer
-    addi $t8, $zero, 11
-
-#clear_buffer:
-    #la $t7, buffer
-   # addi $t8, $zero, 10 # only clear 10 bytes
+    addi $t8, $zero, 10
 
 clear_loop:
     sb $zero, 0($t3) #use t3 directly
@@ -158,9 +153,9 @@ get_substring_value:
     addi $t6, $zero, 5 #half substring length
 
 next_char:
-    addi $t1, $t1, 1 # increment index first
     lb $t5, 0($t0)
     beq $t5, $zero, compute
+    addi $t1, $t1, 1 # increment index first
     addi $t7, $zero, 48 #'0'
     addi $t8, $zero, 57 # '9'
     slt $t9, $t5, $t7
@@ -194,16 +189,14 @@ check_lower:
 
 skip:
     addi $t0, $t0, 1
-   # addi $t1, $t1, 1
-    slti $t9, $t1, 10
-    bne $t9, $zero, next_char
+    slti $t8, $t1, 10
+    bne $t8, $zero, next_char
     j compute
-   #j next_char
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
-    slti $t9, $t1, 6
-    bne $t9, $zero, add_G
+    slti $t8, $t1, 6
+    bne $t8, $zero, add_G
     add $t4, $t4, $t9 #add to sum H
     j continue_loop
 
@@ -212,9 +205,8 @@ add_G:
 
 continue_loop:
     addi $t0, $t0, 1
-   # addi $t1, $t1, 1
-    slti $t9, $t1, 10
-    bne $t9, $zero, next_char
+    slti $t8, $t1, 10
+    bne $t8, $zero, next_char
     j compute
 
 compute:
