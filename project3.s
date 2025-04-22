@@ -125,6 +125,7 @@ process_substring:
     lb $t6, 0($s0)
     bnez $t6, next_chunk
 
+end_process:
     add $v0, $s2, $zero
     lw $ra, 0($sp)
     lw $s0, 4($sp)
