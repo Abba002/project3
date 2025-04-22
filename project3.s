@@ -1,8 +1,9 @@
 .data 
 input:      .space 1001
-strint:     .space 4000
 .align 2
+strint:     .space 4000
 nullstr:    .asciiz "NULL"
+.align 2
 buffer:     .space 11
 
 .text
@@ -26,7 +27,7 @@ main:
     lw $ra, 0($sp)
     addi $sp, $sp, 4
 
-    move $t0, $v0 #t0= count
+    add $t0, $v0, $zero #t0= count
     la $t1, strint #pointer to result array
     li $t2, 0 #index = 0
 
@@ -36,7 +37,7 @@ print_loop:
     li $t4, 0x7FFFFFFF # null
     beq $t3, $t4, print_null
 
-    move $a0, $t3
+    add $a0, $t3, $zero
     li $v0, 1
     syscall
     j check_last
@@ -67,8 +68,8 @@ process_string:
     sw $s0, 4($sp)
     sw $s1, 8($sp)
 
-    move $s0, $a0 #s0= input pointer
-    move $s1, $a1 #s1= result array pointer
+    add $s0, $a0, $zero #s0= input pointer
+    add $s1, $a1, $zero #s1= result array pointer
     li $s2, 0 #substring count = 0
 
 next_chunk:
@@ -123,7 +124,7 @@ process_substring:
     lb $t6, 0($s0)
     bnez $t6, next_chunk
 
-    move $v0, $s2
+    add $v0, $s2, $zero
     lw $ra, 0($sp)
     lw $s0, 4($sp)
     lw $s1, 8($sp)
