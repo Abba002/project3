@@ -185,7 +185,8 @@ skip:
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
-    blt $t1, $t6, add_G
+    slt $t9, $t1, $t6
+    bne $t9, $zero, add_G
     add $t4, $t4, $t9 #add to sum H
     j continue_loop
 
@@ -195,7 +196,8 @@ add_G:
 continue_loop:
     addi $t0, $t0, 1
     addi $t1, $t1, 1
-    blt $t1, 10, next_char
+    slti $t9, $t1, 10
+    bne $t9, $zero, next_char
 
 compute:
     beqz $t2, no_valid
