@@ -61,7 +61,7 @@ exit:
     syscall
 
 process_string:
-    addi $sp, $sp, 12
+    addi $sp, $sp, -12
     sw $ra, 0($sp)
     sw $s0, 4($sp)
     sw $s1, 8($sp)
@@ -78,15 +78,16 @@ next_chunk:
     addi $t8, $zero, 11
 
 clear_buffer:
-    la $t7, buffer
+    #la $t7, buffer
     addi $t8, $zero, 10 # only clear 10 bytes
 
 clear_loop:
-    sb $zero, 0($t7)
-    addi $t7, $t7, 1
+    sb $zero, 0($t3) #use t3 directly
+    addi $t3, $t3, 1
     addi $t8, $t8, -1
     bnez $t8, clear_loop
-    sb $zero, 0($t7) # null terminate the buffer
+    sb $zero, 0($t3) # null terminate the buffer
+    la $t3, buffer #reset t3 to start of buffer
 
 fill_loop:
     lb $t4, 0($s0)
