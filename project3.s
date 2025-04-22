@@ -11,9 +11,9 @@ buffer:     .space 11
 
 main:
     # Read input string
-    li $v0, 8
+    addi $v0, $zero, 8
     la $a0, input
-    li $a1, 1000
+    addi $a1, $zero, 1000
     syscall
 
     la $a0, input
@@ -29,22 +29,22 @@ main:
 
     add $t0, $v0, $zero #t0= count
     la $t1, strint #pointer to result array
-    li $t2, 0 #index = 0
+    addi $t2, $zero, 0 #index = 0
 
 print_loop:
     beq $t2, $t0, exit 
     lw $t3, 0($t1)
-    li $t4, 0x7FFFFFFF # null
+    lui $t4, 0x7FFF; ori $t4, $t4, 0xFFFF # null
     beq $t3, $t4, print_null
 
     add $a0, $t3, $zero
-    li $v0, 1
+    addi $v0, $zero, 1
     syscall
     j check_last
 
 print_null:
     la $a0, nullstr
-    li $v0, 4
+    addi $v0, $zero, 4
     syscall
 
 check_last:
