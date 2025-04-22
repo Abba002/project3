@@ -210,7 +210,8 @@ compute:
     j done
 
 no_valid:
-    li $v0, 0x7FFFFFFF 
+    lui $v0, 0x7FFF
+    ori $v0, $v0, 0xFFFF 
     
 done:
     lw $ra, 0($sp)
