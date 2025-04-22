@@ -179,10 +179,11 @@ check_lower:
 
 skip:
     addi $t0, $t0, 1
-    addi $t1, $t1, 1
-    slti $t9, $t1, 10
-    bne $t9, $zero, next_char
-    j compute
+   # addi $t1, $t1, 1
+    #slti $t9, $t1, 10
+    #bne $t9, $zero, next_char
+   # j compute
+   j next_char
 
 store_digit:
     addi $t2, $t2, 1 #count valid digits
@@ -196,9 +197,10 @@ add_G:
 
 continue_loop:
     addi $t0, $t0, 1
-    addi $t1, $t1, 1
-    slti $t9, $t1, 10
-    bne $t9, $zero, next_char
+   # addi $t1, $t1, 1
+    #slti $t9, $t1, 10
+    #bne $t9, $zero, next_char
+    j next_char
 
 compute:
     beq $t2, $zero, no_valid
