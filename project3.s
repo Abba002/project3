@@ -166,11 +166,13 @@ check_upper:
     j store_digit
 
 check_lower:
-    li $t7, 'a'
-    li $t8, 'v' #22ndth lowercase letter
-    blt $t5, $t7, skip
-    bgt $t5, $t8, skip
-    sub $t9, $t5, 'a'
+    addi $t7, $zero, 97 # 'a'
+    addi $t8, $zero, 118 # 'v' #22ndth lowercase letter
+    slt $t9, $t5, $t7
+    bne $t9, $zero, skip
+    slt $t9, $t8, $t5
+    bne $t9, $zero, skip
+    addi $t9, $t5, -97 # 'a'
     addi $t9, $t9, 10
     j store_digit
 
