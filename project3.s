@@ -16,16 +16,12 @@ main:
     addi $a1, $zero, 1000
     syscall
 
-    la $a0, input
-    la $a1, strint
-
     addi $sp, $sp, -4
     sw $ra, 0($sp)
 
+    la $a0, input
+    la $a1, strint
     jal process_string
-
-    lw $ra, 0($sp)
-    addi $sp, $sp, 4
 
     add $t0, $v0, $zero #t0= count
     la $t1, strint #pointer to result array
@@ -34,7 +30,8 @@ main:
 print_loop:
     beq $t2, $t0, exit 
     lw $t3, 0($t1)
-    lui $t4, 0x7FFF; ori $t4, $t4, 0xFFFF # null
+    lui $t4, 0x7FFF
+    ori $t4, $t4, 0xFFFF # null
     beq $t3, $t4, print_null
 
     add $a0, $t3, $zero
@@ -58,9 +55,10 @@ check_last:
     j print_loop
 
 exit:
+    lw $ra, 0($sp)
+    addi $sp, $sp, 4
     addi $v0, $zero, 10
     syscall
-
 
 process_string:
     addi $sp, $sp, 12
@@ -200,13 +198,14 @@ continue_loop:
     bne $t9, $zero, next_char
 
 compute:
-    beqz $t2, no_valid
+    beq $t2, $zero, no_valid
     sub $t9, $t3, $t4
     sw $t9, 8($sp) #store result on stack
     j done
 
 no_valid:
-    li $t9, 0x7FFFFFFF
+    lui $t9, 0x7FFF
+    ori $t9, $t9, 0xFFFF
     sw $t9, 8($sp) #store NUll on stack
     
 done:
