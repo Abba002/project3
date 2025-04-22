@@ -161,7 +161,7 @@ next_char:
 
 check_upper:
     addi $t7, $zero, 65 # 'A'
-    addi $t8, $zero, 86 # 'V' #22nd uppercase letter
+    addi $t8, $zero, 81 # 'Q'
     slt $t9, $t5, $t7
     bne $t9, $zero, check_lower
     slt $t9, $t8, $t5
@@ -172,7 +172,7 @@ check_upper:
 
 check_lower:
     addi $t7, $zero, 97 # 'a'
-    addi $t8, $zero, 118 # 'v' #22ndth lowercase letter
+    addi $t8, $zero, 113 # 'q' #22ndth lowercase letter
     slt $t9, $t5, $t7
     bne $t9, $zero, skip
     slt $t9, $t8, $t5
