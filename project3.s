@@ -1,9 +1,8 @@
 .data 
-input:      .space 1001
 .align 2
+input:      .space 1001
 strint:     .space 4000
 nullstr:    .asciiz "NULL"
-.align 2
 buffer:     .space 11
 
 .text
@@ -143,9 +142,9 @@ end_process:
     jr $ra
 
 get_substring_value:
-    addi $sp, $sp, -8 #allocate 8 bytes to keep alignment
+    addi $sp, $sp, -4
     sw $ra, 0($sp)
-    lw $t0, 8($sp) #get substring address from stack
+    la $t0, buffer
     addi $t1, $zero, 0 #index
     addi $t2, $zero, 0 #count valid
     addi $t3, $zero, 0 # G sum
